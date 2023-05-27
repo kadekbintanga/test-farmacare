@@ -9,6 +9,7 @@ import (
 
 func InitRouter(){
 	PokemonHandler := handlers.NewPokemonHandler()
+	BattleHandler := handlers.NewBattleHandler()
 	r := gin.Default()
 	api :=r.Group("/api/v1")
 	api.GET("/health", func(c *gin.Context){
@@ -18,6 +19,9 @@ func InitRouter(){
 	})
 	api.GET("/health/pokemon", PokemonHandler.HealthPokemon)
 	api.GET("/pokemon", PokemonHandler.GetPokemonList)
+	api.GET("/health/battle", BattleHandler.HealthBattle)
+	api.POST("/battle/auto", BattleHandler.CreateBattleAuto)
+	api.POST("/battle/manual", BattleHandler.CreateBattleManual)
 
 	r.Run(":8000")
 }

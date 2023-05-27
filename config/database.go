@@ -5,6 +5,7 @@ import(
 	"os"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"test-farmacare/app/models"
 )
 
 func ConnectDB() *gorm.DB{
@@ -28,6 +29,8 @@ func ConnectDB() *gorm.DB{
 
 func MigrateDatabase(db *gorm.DB){
 	db.AutoMigrate(
+		&models.Battle{},
+		&models.BattlePokemon{},
 	)
 
 	fmt.Println("Database Migration has been success")
