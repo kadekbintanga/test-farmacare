@@ -4,6 +4,7 @@ import (
 	"test-farmacare/app/handlers"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"os"
 )
 
 
@@ -28,5 +29,5 @@ func InitRouter(){
 	api.GET("/battlepokemon/score", BattlePokemonHandler.GetTotalScore)
 	api.PUT("/battlepokemon/annulled", BattlePokemonHandler.AnnulledPosition)
 
-	r.Run(":8000")
+	r.Run(":"+os.Getenv("PORT"))
 }

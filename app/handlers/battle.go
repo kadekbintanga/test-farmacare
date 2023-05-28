@@ -7,8 +7,6 @@ import (
 	"test-farmacare/app/resources"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
-	// "encoding/json"
-	// "io/ioutil"
 	"math/rand"
 	"net/http"
 	"strconv"
@@ -127,6 +125,8 @@ func(h *BattleHandler) CreateBattleAuto(c *gin.Context){
 	var data_poke []map[string]interface{}
 	for _,value := range save_pokemon{
 		d := gin.H{
+			"id":value.ID,
+			"uuid":value.UUID,
 			"pokemon_name":value.PokemonName,
 			"position":value.Position,
 			"score":value.Score,
@@ -135,6 +135,7 @@ func(h *BattleHandler) CreateBattleAuto(c *gin.Context){
 	}
 
 	res := gin.H{
+		"id":save_battle.ID,
 		"uuid":save_battle.UUID,
 		"battle_name":save_battle.BattleName,
 		"pokemons":data_poke,
@@ -218,6 +219,8 @@ func(h *BattleHandler) CreateBattleManual(c *gin.Context){
 	var data_poke []map[string]interface{}
 	for _,value := range save_pokemon{
 		d := gin.H{
+			"id":value.ID,
+			"uuid":value.UUID,
 			"pokemon_name":value.PokemonName,
 			"position":value.Position,
 			"score":value.Score,
@@ -226,6 +229,7 @@ func(h *BattleHandler) CreateBattleManual(c *gin.Context){
 	}
 
 	res := gin.H{
+		"id":save_battle.ID,
 		"uuid":save_battle.UUID,
 		"battle_name":save_battle.BattleName,
 		"pokemons":data_poke,
