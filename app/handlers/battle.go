@@ -286,6 +286,7 @@ func(h *BattleHandler) GetListBattle(c *gin.Context){
 		var data_batle []map[string]interface{}
 		for _,v1 := range v.BattlePokemon{
 			d1 := gin.H{
+				"id":v1.ID,
 				"uuid":v1.UUID,
 				"pokemon_name":v1.PokemonName,
 				"position":v1.Position,
@@ -294,6 +295,7 @@ func(h *BattleHandler) GetListBattle(c *gin.Context){
 			data_batle = append(data_batle,d1)
 		}
 		d := gin.H{
+			"id":v.ID,
 			"uuid":v.UUID,
 			"battle_name":v.BattleName,
 			"created_at":v.CreatedAt,

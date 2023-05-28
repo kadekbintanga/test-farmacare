@@ -3,7 +3,6 @@ package repositories
 import (
 	"test-farmacare/config"
 	"test-farmacare/app/models"
-	"fmt"
 	"time"
 )
 
@@ -43,14 +42,11 @@ func(db *dbConnection) GetListBattle(start_date string, end_date string, limit i
 	var count int64
 	connection := db.connection.Debug().Model(&Battle)
 	if start_date != ""{
-		time_loc,_:= time.LoadLocation("Asia/Jakarta")
-		startDate,_ := time.ParseInLocation("2006-01-02 15:04:05", start_date, time_loc)
-		fmt.Println(startDate)
+		startDate,_ := time.Parse("2006-01-02 15:04:05", start_date)
 		connection = connection.Where("created_at >= ?", startDate)
 	}
 	if end_date != ""{
-		time_loc,_:= time.LoadLocation("Asia/Jakarta")
-		endDate,_ := time.ParseInLocation("2006-01-02 15:04:05", end_date, time_loc)
+		endDate,_ := time.Parse("2006-01-02 15:04:05", end_date)
 		connection = connection.Where("created_at <= ?", endDate)
 	}
 	connection.Count(&count)

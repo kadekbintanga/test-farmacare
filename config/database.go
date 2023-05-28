@@ -28,6 +28,7 @@ func ConnectDB() *gorm.DB{
 
 
 func MigrateDatabase(db *gorm.DB){
+	InitUUID(db)
 	db.AutoMigrate(
 		&models.Battle{},
 		&models.BattlePokemon{},
@@ -42,4 +43,8 @@ func DisconnectDB(db *gorm.DB){
 		panic("Failed to kill connection from database")
 	}
 	dbSQL.Close()
+}
+
+func InitUUID(db *gorm.DB){
+	db.Exec(`CREATE EXTENSION IF NOT EXISTS 'uuid-ossp';`)
 }
