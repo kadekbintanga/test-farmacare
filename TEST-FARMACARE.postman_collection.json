@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "dd996760-86b2-4186-bd3b-c3d81b4b84fe",
+		"name": "TEST-FARMACARE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21289767"
+	},
+	"item": [
+		{
+			"name": "Health Project",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/health",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health Pokemon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/health/pokemon",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"health",
+						"pokemon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pokemon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/pokemon?page=10&limit=20",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"pokemon"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "10"
+						},
+						{
+							"key": "limit",
+							"value": "20"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health Battle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/health/battle",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"health",
+						"battle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Battle Auto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"battle_name\":\"Battle Poke Campion\",\n    \"pokemons\":[\"spearow\", \"fearow\", \"ekans\", \"pikachu\",\"nidoqueen\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/battle/auto",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"battle",
+						"auto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Battle Manual",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"battle_name\":\"Battle Poke Manual 1\",\n    \"position\":[\"pikachu\", \"fearow\", \"ekans\", \"ditto\",\"nidoqueen\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/battle/manual",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"battle",
+						"manual"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Battle List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/battle?start_date=2023-05-28 14:46:00&end_date=2023-05-28 14:48:25&page=1&limit=10",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"battle"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2023-05-28 14:46:00"
+						},
+						{
+							"key": "end_date",
+							"value": "2023-05-28 14:48:25"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health Battle Pokemon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/health/battlepokemon",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"health",
+						"battlepokemon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Total Score",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/battlepokemon/score",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"battlepokemon",
+						"score"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Annuled Position",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/battlepokemon/annulled?uuid_pokemon=d3926d65-b06b-4aff-ac24-2bc6349c10db",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"battlepokemon",
+						"annulled"
+					],
+					"query": [
+						{
+							"key": "uuid_pokemon",
+							"value": "d3926d65-b06b-4aff-ac24-2bc6349c10db"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
