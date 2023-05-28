@@ -106,5 +106,5 @@ In this service, the request method is PUT and you have to set the uuid paramete
 For support this project. I attach postman collection with name "TEST-FARMACARE.postman_collection.json".
 
 
-### ----------------------------------------------------------- THANK YOU -----------------------------------------------------------
+### THANK YOU
 created by : Kadek Bintang Anjasmara @2023
