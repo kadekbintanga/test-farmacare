@@ -81,6 +81,7 @@ func(h *PokemonHandler) GetPokemonList(c *gin.Context){
 
 	res := data_map["results"].([]interface{})
 	total := int(data_map["count"].(float64))
+	
 	response := helpers.APIResponse2("Success", http.StatusOK,page_int,limit_int,total,res)
 	c.JSON(http.StatusOK, response)
 	return

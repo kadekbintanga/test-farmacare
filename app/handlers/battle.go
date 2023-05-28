@@ -11,7 +11,8 @@ import (
 	// "io/ioutil"
 	"math/rand"
 	"net/http"
-	// "strconv"
+	"strconv"
+	"time"
 	"os"
 )
 
@@ -235,6 +236,77 @@ func(h *BattleHandler) CreateBattleManual(c *gin.Context){
 	return
 }
 
+func(h *BattleHandler) GetListBattle(c *gin.Context){
+	start_date := c.DefaultQuery("start_date","")
+	if start_date != ""{
+		check_date,_ := time.Parse("2006-01-02 15:04:05", start_date)
+		log.Info(check_date)
+		if check_date.String() == "0001-01-01 00:00:00 +0000 UTC"{
+			log.Error("Checkdate : ",start_date)
+			errorMessage := gin.H{"error message": "Invalid format start_date"}
+			response := helpers.APIResponse("Bad Request", http.StatusBadRequest, errorMessage)
+			c.AbortWithStatusJSON(http.StatusBadRequest, response)
+			return
+		}
+	}
+	end_date := c.DefaultQuery("end_date","")
+	if end_date!= ""{
+		check_date,_ := time.Parse("2006-01-02 15:04:05", end_date)
+		if check_date.String() == "0001-01-01 00:00:00 +0000 UTC"{
+			log.Error("Checkdate : ",end_date)
+			errorMessage := gin.H{"error message": "Invalid format end_date"}
+			response := helpers.APIResponse("Bad Request", http.StatusBadRequest, errorMessage)
+			c.AbortWithStatusJSON(http.StatusBadRequest, response)
+			return
+		}
+	}
+	page, err := strconv.Atoi(c.DefaultQuery("page","1"))
+	if err != nil {
+		log.Error("Page got : ",err)
+		errorMessage := gin.H{"error message": "Page param must be a number, Please check your page params!"}
+		response := helpers.APIResponse("Bad Request", http.StatusBadRequest, errorMessage)
+		c.AbortWithStatusJSON(http.StatusBadRequest, response)
+		return
+	}
+	limit, err := strconv.Atoi(c.DefaultQuery("limit","10"))
+	if err != nil {
+		log.Error("Page got : ",err)
+		errorMessage := gin.H{"error message": "Limit param must be a number, Please check your page params!"}
+		response := helpers.APIResponse("Bad Request", http.StatusBadRequest, errorMessage)
+		c.AbortWithStatusJSON(http.StatusBadRequest, response)
+		return
+	}
+	offset := (page-1)*limit
+	repo_battle := h.repo_battle
+	res, total, err := repo_battle.GetListBattle(start_date, end_date, limit, offset)
+
+	var data []map[string]interface{}
+	
+	for _,v := range res{
+		var data_batle []map[string]interface{}
+		for _,v1 := range v.BattlePokemon{
+			d1 := gin.H{
+				"uuid":v1.UUID,
+				"pokemon_name":v1.PokemonName,
+				"position":v1.Position,
+				"score":v1.Score,
+			}
+			data_batle = append(data_batle,d1)
+		}
+		d := gin.H{
+			"uuid":v.UUID,
+			"battle_name":v.BattleName,
+			"created_at":v.CreatedAt,
+			"updated_at":v.UpdatedAt,
+			"battle_pokemon":data_batle,
+		}
+		data = append(data,d)
+	}
+
+	response := helpers.APIResponse2("Success", http.StatusOK,page,limit,int(total),data)
+	c.JSON(http.StatusOK, response)
+	return
+}
 
 
 

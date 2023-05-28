@@ -22,6 +22,7 @@ func InitRouter(){
 	api.GET("/health/battle", BattleHandler.HealthBattle)
 	api.POST("/battle/auto", BattleHandler.CreateBattleAuto)
 	api.POST("/battle/manual", BattleHandler.CreateBattleManual)
+	api.GET("/battle", BattleHandler.GetListBattle)
 
 	r.Run(":8000")
 }
