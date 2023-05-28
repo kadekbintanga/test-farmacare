@@ -26,6 +26,7 @@ func InitRouter(){
 	api.GET("/battle", BattleHandler.GetListBattle)
 	api.GET("/health/battlepokemon", BattlePokemonHandler.HealthBattlePokemon)
 	api.GET("/battlepokemon/score", BattlePokemonHandler.GetTotalScore)
+	api.PUT("/battlepokemon/annulled", BattlePokemonHandler.AnnulledPosition)
 
 	r.Run(":8000")
 }

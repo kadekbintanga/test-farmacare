@@ -8,6 +8,9 @@ import (
 type BattlePokemonRepository interface {
 	SaveBattlePokemon(BattlePokemon []models.BattlePokemon)([]models.BattlePokemon,error)
 	GetTotalScore()([]map[string]interface{}, error)
+	GetPokemonBattleByUuuid(uuid string)(models.BattlePokemon, error)
+	GetPokemonBattleByPositionBattleId(position uint, battle_id uint)(models.BattlePokemon, error)
+	UpdatePosition(id uint, update_data map[string]interface{})(error)
 }
 
 func NewBattlePokemonRepository() BattlePokemonRepository {
@@ -33,4 +36,30 @@ func(db *dbConnection) GetTotalScore()([]map[string]interface{}, error){
 		return result, err
 	}
 	return result, nil
+}
+
+func(db *dbConnection) GetPokemonBattleByUuuid(uuid string)(models.BattlePokemon, error){
+	var BattlePokemon models.BattlePokemon
+	err := db.connection.Where("uuid = ?", uuid).Find(&BattlePokemon).Error
+	if err != nil {
+		return BattlePokemon, err
+	}
+	return BattlePokemon, nil
+}
+
+func(db *dbConnection) GetPokemonBattleByPositionBattleId(position uint, battle_id uint)(models.BattlePokemon, error){
+	var BattlePokemon models.BattlePokemon
+	err := db.connection.Where("position = ? AND battle_id = ?", position, battle_id).Find(&BattlePokemon).Error
+	if err != nil {
+		return BattlePokemon, err
+	}
+	return BattlePokemon, nil
+}
+
+func(db *dbConnection) UpdatePosition(id uint, update_data map[string]interface{})(error){
+	err := db.connection.Table("battle_pokemons").Where("id = ?", id).Updates(update_data).Error
+	if err != nil {
+		return err
+	}
+	return nil
 }

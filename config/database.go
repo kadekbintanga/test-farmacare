@@ -46,5 +46,5 @@ func DisconnectDB(db *gorm.DB){
 }
 
 func InitUUID(db *gorm.DB){
-	db.Exec(`CREATE EXTENSION IF NOT EXISTS 'uuid-ossp';`)
+	db.Exec(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`)
 }
