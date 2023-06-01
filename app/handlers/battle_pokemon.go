@@ -2,16 +2,10 @@ package handlers
 
 import (
 	"test-farmacare/app/helpers"
-	// "test-farmacare/app/models"
 	"test-farmacare/app/repositories"
-	// "test-farmacare/app/resources"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
-	// "math/rand"
 	"net/http"
-	// "strconv"
-	// "time"
-	// "os"
 )
 
 type BattlePokemonHandler struct {
